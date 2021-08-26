@@ -12,11 +12,11 @@ public class ProductManager {
         this.repository = repository;
     }
 
-    public void add(Product product) {
-        repository.save(product);
+    public void add(Product item) {
+        repository.save(item);
     }
 
-    public Product[] searchBy(String text) {
+   /* public Product[] searchBy(String text) {
         Product[] result = new Product[0];
         for (Product product : repository.findAll()) {
             if (matches(product, text)) {
@@ -27,7 +27,7 @@ public class ProductManager {
             }
         }
         return result;
-    }
+    }*/
 
     public boolean matches(Product product, String search) {
         if (product instanceof Book) {
@@ -39,12 +39,12 @@ public class ProductManager {
                 return true;
             }
         }
-        if (product instanceof Smartphone){
+        if (product instanceof Smartphone) {
             Smartphone smartphone = (Smartphone) product;
-            if (smartphone.getName().equalsIgnoreCase(search)){
+            if (smartphone.getName().equalsIgnoreCase(search)) {
                 return true;
             }
-            if (smartphone.getManufacturer().equalsIgnoreCase(search)){
+            if (smartphone.getManufacturer().equalsIgnoreCase(search)) {
                 return true;
             }
         }

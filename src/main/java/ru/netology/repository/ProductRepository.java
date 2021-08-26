@@ -1,9 +1,13 @@
 package ru.netology.repository;
 
+import ru.netology.domain.Book;
 import ru.netology.domain.Product;
+import ru.netology.domain.Smartphone;
+import ru.netology.exception.NotFoundException;
 
 public class ProductRepository {
     private Product[] items = new Product[0];
+    private ProductRepository repository;
 
     public void save(Product item) {
         int length = items.length + 1;
@@ -12,10 +16,6 @@ public class ProductRepository {
         int lastIndex = tmp.length - 1;
         tmp[lastIndex] = item;
         items = tmp;
-    }
-
-    public Product[] findAll() {
-        return items;
     }
 
     public Product findById(int id) {
@@ -27,7 +27,10 @@ public class ProductRepository {
         return null;
     }
 
-    public void removeById(int id) {
+    public Product[] removeById(int id) {
+        if (findById(id) == null) {
+            throw new NotFoundException("id удаление несуществующего объекта: " + id);
+        }
         int length = items.length - 1;
         Product[] tmp = new Product[length];
         int index = 0;
@@ -38,5 +41,7 @@ public class ProductRepository {
             }
         }
         items = tmp;
+        return tmp;
     }
+
 }

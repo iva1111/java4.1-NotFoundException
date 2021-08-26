@@ -18,6 +18,10 @@ public class Book extends Product {
         this.author = author;
     }
 
+    public Book(int id, String first, int price) {
+        super(id, first, price);
+    }
+
     public String getAuthor() {
         return author;
     }
